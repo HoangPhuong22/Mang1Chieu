@@ -5,46 +5,18 @@ typedef long long ll;
 const int MOD = 1e9 + 7;
 const int Maxn = 1e7 + 1;
 
-bool check(int n)
-{
-    int tmp = n % 10; n /= 10;
-    while(n)
-    {
-        int r = n % 10;
-        if(r >= tmp) return false;
-        tmp = r;
-        n /= 10;
-    }
-    return true;
-}
-bool cmp(pair<int,int>a , pair<int,int> b)
-{
-    if(a.second != b.second)
-    {
-        return a.second > b.second;
-    }
-    return a.first< b.first;
-}
+
+
 int main()
 {
-    int x ;
-    map<int,int>mp;
-    while(cin >> x)
+    ll n ; cin >> n;
+    int a[] = {1000 , 500 , 200 , 100 , 50 , 20 , 10 , 5 , 2 , 1};
+    ll ans = 0;
+    for(int i = 0 ; i < 10 ; i++)
     {
-        if(check(x))
-        {
-            mp[x]++;
-        }
+        ans += n / a[i];
+        n %= a[i];
     }
-    vector<pair<int,int>>v;
-    for(auto x : mp)
-    {
-        v.push_back({x , mp[x]});
-    }
-    sort(v.begin() , v.end() , cmp);
-    for(pair<int,int> x : v)
-    {
-        cout << x.first << " " << x.second <<endl;
-    }
+    cout << ans;
 }
 
